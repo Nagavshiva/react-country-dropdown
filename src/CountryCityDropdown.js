@@ -15,17 +15,18 @@ function CountryCityDropdown() {
   // Handle country selection
   const handleCountryChange = (e) => {
     const countryName = e.target.value;
-
     setSelectedCountry(countryName);
 
-    const data = countries.find((country) => country.name === countryName);
-
-    if (data) {
-      setCities(data.cities);
-      setSelectedCity(data.cities[0]);
+    // Find the selected country's cities
+    const selectedCountryObj = countries.find(
+      (country) => country.name === countryName
+    );
+    if (selectedCountryObj) {
+      setCities(selectedCountryObj.cities);
+      setSelectedCity(selectedCountryObj.cities[0]); // Automatically select the first city
     } else {
       setCities([]);
-      setSelectedCity("");
+      setSelectedCity(""); // Reset the city when no country is selected
     }
   };
 
